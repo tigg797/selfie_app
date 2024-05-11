@@ -26,17 +26,17 @@ function save() {
     link.href = image;
     link.click();
 }
-
+camera = document.getElementById("camera")
 Webcam.set({
     height: 250,
     width: 360,
-    image_format: "jpg",
-    jpg_quality: 100
+    image_format: "jpeg",
+    jpeg_quality: 100
 });
 
 function take_snapshot() {
     Webcam.snap(function(data_uri) {
-        document.getElementById("result").innerHTML = "<img id='selfie_image' src='"+data_uri+"'>";
+        document.getElementById("result").innerHTML = '<img id="selfie_image" src="'+data_uri+'"/>';
     });
 }
 
@@ -45,12 +45,12 @@ function speak() {
     var inthebox = document.getElementById("textbox").value;
     var whatsaid;
     if(inthebox == "take my selfie") {
-        var whatsaid = "taking your selfie in five seconds"
+        var speak_data = "taking your selfie in five seconds"
     }
     else {
-        var whatsaid = inthebox
+        var speak_data = inthebox
     }
-    var utterthis = new SpeechSynthesisUtterance(whatsaid);
+    var utterthis = new SpeechSynthesisUtterance(speak_data);
     synth.speak(utterthis);
     
     Webcam.attach(camera);
